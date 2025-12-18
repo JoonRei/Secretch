@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta property="og:title" content="Secretch | A Private Hello" />
+    <meta property="og:description" content="Unwrap the words I sent you." />
+    <meta
+      property="og:image"
+      content="https://your-project-name.vercel.app/preview-image.jpg"
+    />
+    <meta property="og:url" content="https://your-project-name.vercel.app" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>Secretch</title>
+
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%23121212'/><text x='50%25' y='55%25' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-weight='bold' font-size='20' fill='white'>S</text><path d='M6 22L26 10' stroke='%2322c55e' stroke-width='3' stroke-linecap='round' opacity='0.8'/></svg>"
+    />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
+    <meta name="apple-mobile-web-app-title" content="Secretch" />
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  </head>
+  <body>
+    <canvas id="particle-canvas"></canvas>
+
+    <div id="creator-view" class="view">
+      <div class="glass-card">
+        <div class="header-status">
+          <span class="pulse-dot"></span>
+          Unwrap the Words
+        </div>
+        <h1>Secretch</h1>
+        <p class="description">
+          Your message is hidden under a foil. Your friend must scratch it away
+          to read.
+        </p>
+
+        <div class="form-stack">
+          <input
+            type="text"
+            id="sender-name"
+            placeholder="Your Name"
+            autocomplete="off"
+          />
+          <textarea
+            id="greeting-text"
+            placeholder="Type your message..."
+            maxlength="220"
+          ></textarea>
+          <button id="gen-btn">Create Secretch</button>
+        </div>
+
+        <div id="link-section" class="hidden">
+          <div class="divider"></div>
+          <div class="share-pill">
+            <span id="link-url"></span>
+            <button id="copy-btn">Copy</button>
+          </div>
+
+          <div id="status-badge" class="badge-pending">
+            <span class="badge-icon"></span>
+            <span id="status-text">DELIVERED</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="receiver-view" class="view hidden">
+      <div class="reveal-container">
+        <p id="display-from" class="meta-text"></p>
+        <h2 id="display-msg"></h2>
+      </div>
+
+      <canvas id="scratch-canvas"></canvas>
+      <div id="scratch-hint">Gently rub the screen to reveal</div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,83 @@
+:root {
+    --bg: #050505;
+    --card-bg: rgba(15, 15, 15, 0.85);
+    --border: rgba(255, 255, 255, 0.08);
+}
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+body, html { 
+    margin: 0; padding: 0; width: 100%; height: 100%; 
+    font-family: 'Inter', sans-serif; background: var(--bg); color: white;
+    overflow: hidden;
+}
+
+#particle-canvas { position: fixed; top: 0; left: 0; z-index: 0; pointer-events: none; }
+
+.view {
+    height: 100vh; display: flex; align-items: center; justify-content: center;
+    background: radial-gradient(circle at center, #111 0%, #000 100%);
+    position: relative; z-index: 1;
+}
+
+.glass-card {
+    width: 92%; max-width: 380px; padding: 32px 24px;
+    background: var(--card-bg); backdrop-filter: blur(25px);
+    border: 1px solid var(--border); border-radius: 32px;
+    text-align: center; box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+}
+
+.header-status { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 2px; color: #444; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 16px; font-weight: 600; }
+.pulse-dot { width: 6px; height: 6px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 8px #22c55e; animation: pulse-glow 2s infinite; }
+@keyframes pulse-glow { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+h1 { font-size: 1.6rem; font-weight: 700; letter-spacing: -0.5px; margin: 0 0 8px 0; }
+.description { color: #777; font-size: 0.9rem; line-height: 1.4; margin-bottom: 24px; }
+
+.form-stack { display: flex; flex-direction: column; gap: 12px; }
+input, textarea {
+    background: rgba(0,0,0,0.4); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px; color: white; font-family: 'Inter', sans-serif; font-size: 1rem; outline: none;
+}
+textarea { height: 90px; resize: none; }
+
+#gen-btn {
+    background: white; color: black; border: none; padding: 16px;
+    border-radius: 100px; font-weight: 600; font-family: 'Inter', sans-serif;
+    font-size: 1rem; cursor: pointer; transition: 0.3s;
+}
+
+.share-pill {
+    background: #000; border: 1px solid var(--border); 
+    border-radius: 100px; padding: 4px 4px 4px 16px;
+    display: flex; align-items: center; gap: 10px; margin-top: 5px;
+}
+#link-url { font-size: 0.8rem; color: #555; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; flex: 1; text-align: left; }
+#copy-btn { background: #1a1a1a; color: white; border: none; padding: 10px 18px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; cursor: pointer; }
+
+/* MODERN STATUS BADGE */
+#status-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    margin-top: 16px; padding: 6px 14px; border-radius: 100px;
+    font-size: 0.6rem; font-weight: 800; text-transform: uppercase;
+    letter-spacing: 1.2px; transition: all 0.5s ease;
+}
+.badge-pending { background: rgba(255,255,255,0.03); color: #444; border: 1px solid var(--border); }
+.badge-opened { background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2); animation: chime-ripple 0.8s ease-out; }
+
+@keyframes chime-ripple {
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+    100% { transform: scale(1); }
+}
+
+.badge-icon { width: 4px; height: 4px; border-radius: 50%; background: currentColor; }
+
+/* Receiver UI */
+.reveal-container { position: absolute; text-align: center; width: 80%; z-index: 1; pointer-events: none; }
+.meta-text { text-transform: uppercase; letter-spacing: 4px; font-size: 0.65rem; color: #444; margin-bottom: 15px; }
+#display-msg { font-family: 'Cormorant Garamond', serif; font-size: 2.4rem; font-style: italic; color: #fff; line-height: 1.2; margin: 0; }
+#scratch-canvas { position: absolute; top: 0; left: 0; z-index: 10; touch-action: none; cursor: crosshair; }
+#scratch-hint { position: absolute; bottom: 40px; font-size: 0.65rem; color: rgba(255,255,255,0.2); text-transform: uppercase; letter-spacing: 3px; z-index: 11; }
+
+.hidden { display: none !important; }
+.divider { height: 1px; background: var(--border); margin: 16px 0; }
